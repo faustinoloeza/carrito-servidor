@@ -49,12 +49,26 @@ const getCars = async (req, res) => {
   };
 
 //Me permite crear un vehiculo
-  const createCar = async (req, res) => {
-    try {
-        const body = request.body;
+const createCar = async (req, res) => {
+	try {
+        const body = req.body;
         const newCar = new Car(body);
         await newCar.save();
         return newCar;
+    } catch (e) {
+      throw e;
+    }
+  };
+
+//Me permite actualizar un vehiculo
+  const updateCar = async (req, res) => {
+	try {
+		const id = req.params.id;
+        const body = req.body;
+        const updatedCar = await Car.findByIdAndUpdate(id, body, {
+			new: true
+		});
+        return updatedCar;
     } catch (e) {
       throw e;
     }
@@ -64,5 +78,6 @@ const getCars = async (req, res) => {
     getCars,
     getCarsOptions,
     getCar,
-    createCar
+    createCar,
+	updateCar
 }

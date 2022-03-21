@@ -15,11 +15,11 @@ const carSchema = new Schema(
             required: true, 
           },
           price_mxn: {
-            type: String,
+            type: Number,
             required: true, 
           },
           price_usd: {
-            type: String,
+            type: Number,
             required: true, 
           },
           descripcion: {
